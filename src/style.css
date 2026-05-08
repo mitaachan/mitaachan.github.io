@@ -146,10 +146,12 @@ body {
 ───────────────────────────────────────────── */
 .navbar {
   position:fixed; inset-block-start:0; inset-inline:0; z-index:100;
-  background:rgba(255,249,250,.35);
+  
+  /* Background diubah menjadi putih (menggunakan opacity 0.95 agar efek blur/glassmorphism yang elegan tetap ada) */
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter:blur(20px) saturate(1.6);
   -webkit-backdrop-filter:blur(20px) saturate(1.6);
-  border-bottom:1px solid rgba(225,29,72,.12);
+  border-bottom:1px solid rgba(225,29,72,.15);
   border-radius: 0 0 20px 20px;
   transition:transform .7s var(--ease-out);
 }
@@ -165,19 +167,18 @@ body {
 
 /* PERUBAHAN PADA BUTTON NAVBAR */
 .nav-btn {
-  background:none; border:none; cursor:pointer;
+  /* Diberi background merah sangat pucat/soft pink agar bentuk tombol terlihat jelas di atas navbar putih */
+  background: var(--c-red-light); 
+  border:none; cursor:pointer;
   font-family:var(--ff-sans); font-size:.83rem; font-weight:600;
-  
-  /* Menggunakan merah gelap (--c-red-dark) agar lebih terang dari background tema tapi tetap kontras di atas navbar */
   color:var(--c-red-dark); opacity:1; padding:.4rem .9rem;
-  
   border-radius:100px; transition:all .2s ease; letter-spacing:.03em;
 }
 
-/* Background hover & aktif menggunakan warna yang sedikit lebih terang dari background tema utama */
+/* Background hover & aktif berubah menjadi merah gelap */
 .nav-btn:hover, .nav-btn--active { 
-  background:var(--c-red-dark); 
-  color:white; 
+  background: var(--c-red-dark); 
+  color: white; 
 }
 
 /* ─────────────────────────────────────────────
