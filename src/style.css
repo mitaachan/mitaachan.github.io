@@ -37,8 +37,10 @@
   --c-cream:     #fffdf7;
   --c-cream-mid: #fef6e8;
   --c-ink:       #1a0a0e;
-  --c-night:     #0e0610;
-  --c-night-mid: #160c1e;
+  
+  /* Diubah dari ungu ke merah gelap (Maroon/Burgundy) */
+  --c-night:     #1a0505; 
+  --c-night-mid: #240707; 
 
   --ff-serif:   'Playfair Display', Georgia, serif;
   --ff-elegant: 'Cormorant Garamond', Georgia, serif;
@@ -160,13 +162,23 @@ body {
 .nav-logo { background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:.5rem; }
 .nav-logo-text { font-family:var(--ff-serif); font-size:1.1rem; font-weight:700; color:var(--c-red-deep); }
 .nav-links { display:flex; gap:.3rem; }
+
+/* PERUBAHAN PADA BUTTON NAVBAR */
 .nav-btn {
   background:none; border:none; cursor:pointer;
   font-family:var(--ff-sans); font-size:.83rem; font-weight:600;
-  color:var(--c-red-deep); opacity:.6; padding:.4rem .9rem;
+  
+  /* Menggunakan merah gelap (--c-red-dark) agar lebih terang dari background tema tapi tetap kontras di atas navbar */
+  color:var(--c-red-dark); opacity:1; padding:.4rem .9rem;
+  
   border-radius:100px; transition:all .2s ease; letter-spacing:.03em;
 }
-.nav-btn:hover, .nav-btn--active { opacity:1; background:var(--c-red); color:white; }
+
+/* Background hover & aktif menggunakan warna yang sedikit lebih terang dari background tema utama */
+.nav-btn:hover, .nav-btn--active { 
+  background:var(--c-red-dark); 
+  color:white; 
+}
 
 /* ─────────────────────────────────────────────
    PAGE BASE
@@ -283,8 +295,7 @@ body {
 .mosaic-section {
   position: relative;
   width: 100%;
-  /* dark BG agar terasa seperti cinema */
-  background: var(--c-night-mid, #160c1e);
+  background: var(--c-night-mid, #240707);
   overflow: hidden;
   /* enough height to show 2 rows */
   min-height: 560px;
@@ -305,7 +316,7 @@ body {
 .m-cell { overflow: hidden; }
 .m-photo {
   width: 100%; height: 200px;
-  background: linear-gradient(135deg, #2a1020, #1a0a15);
+  background: linear-gradient(135deg, #3a0a0a, #1a0505);
   display: flex; align-items: center; justify-content: center;
   font-size: 3rem;
   overflow: hidden;
@@ -333,7 +344,7 @@ body {
   letter-spacing: -.01em;
   pointer-events: none;
   /* gradient behind text for legibility */
-  background: linear-gradient(to top, rgba(14,6,16,.92) 0%, rgba(14,6,16,.6) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(26,5,5,.92) 0%, rgba(26,5,5,.6) 55%, transparent 100%);
 }
 .mosaic-overlay-text em {
   font-style: italic;
@@ -355,13 +366,13 @@ body {
   height: 90px;
 }
 .mosaic-fade--top    { top: 0;    background: linear-gradient(to bottom, var(--c-cream) 0%, transparent 100%); }
-.mosaic-fade--bottom { bottom: 0; background: linear-gradient(to top, var(--c-night-mid,#160c1e) 0%, transparent 100%); }
+.mosaic-fade--bottom { bottom: 0; background: linear-gradient(to top, var(--c-night-mid,#240707) 0%, transparent 100%); }
 
 /* ─────────────────────────────────────────────
    DARK TAGLINE SECTION  ← NEW (seperti 2-luv "about")
 ───────────────────────────────────────────── */
 .tagline-section {
-  background: #160c1e;
+  background: #240707;
   color: white;
   padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 5vw, 3rem);
   text-align: center;
@@ -479,22 +490,21 @@ body {
   }
 }
 
-
 /* multi-layer vignette — dark bottom, subtle dark edges */
 .cinema-vignette {
   position: absolute;
   inset: 0;
   background:
     linear-gradient(to bottom,
-      rgba(14,6,16,.25) 0%,
-      rgba(14,6,16,.0)  30%,
-      rgba(14,6,16,.0)  50%,
-      rgba(14,6,16,.75) 85%,
-      rgba(14,6,16,.95) 100%
+      rgba(26,5,5,.25) 0%,
+      rgba(26,5,5,.0)  30%,
+      rgba(26,5,5,.0)  50%,
+      rgba(26,5,5,.75) 85%,
+      rgba(26,5,5,.95) 100%
     ),
     radial-gradient(ellipse 80% 80% at 50% 50%,
       transparent 50%,
-      rgba(14,6,16,.55) 100%
+      rgba(26,5,5,.55) 100%
     );
   pointer-events: none;
 }
@@ -610,7 +620,7 @@ body {
    REASONS I LOVE YOU
 ───────────────────────────────────────────── */
 .reasons-section {
-  background: #160c1e;
+  background: #240707;
   padding: clamp(4rem,10vw,7rem) clamp(1.5rem,4vw,3rem);
   overflow: hidden;
   position: relative;
@@ -922,4 +932,389 @@ body {
   .mosaic-overlay-text { font-size: clamp(1.4rem, 7vw, 2.2rem); }
   .tl-heading { font-size: clamp(1.4rem, 5vw, 2rem); }
   .tl-features { gap: 2rem; }
+}
+
+/* ═══════════════════════════════════════════════
+  PAGE: LAGU
+  Tambahkan di bagian bawah src/style.css
+═══════════════════════════════════════════════ */
+
+.page-lagu {
+  background: var(--c-night);
+  padding-top: 62px;
+  padding-bottom: 6rem;
+  min-height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Aurora background ── */
+.lagu-bg-aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 20%, rgba(225,29,72,.18) 0%, transparent 100%),
+    radial-gradient(ellipse 55% 45% at 85% 15%, rgba(159,18,57,.14) 0%, transparent 100%),
+    radial-gradient(ellipse 60% 40% at 50% 80%, rgba(225,29,72,.10) 0%, transparent 100%);
+  animation: auroraShift 12s ease-in-out infinite alternate;
+}
+@keyframes auroraShift {
+  0%   { opacity: .7; transform: scale(1); }
+  100% { opacity: 1;  transform: scale(1.06); }
+}
+
+/* ── Background word ── */
+.lagu-bg-word {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--ff-serif);
+  font-size: clamp(8rem, 28vw, 20rem);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(225,29,72,.04);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+  letter-spacing: .1em;
+}
+
+/* ── Header ── */
+.lagu-header {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: clamp(3rem, 8vw, 5rem) 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lagu-eyebrow {
+  font-family: var(--ff-elegant);
+  font-size: clamp(.75rem, 2vw, .88rem);
+  font-style: italic;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--c-red);
+  opacity: .85;
+  animation: fadeUp .8s var(--ease-out) .1s both;
+}
+
+.lagu-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 400;
+  color: white;
+  line-height: 1.15;
+  animation: fadeUp .8s var(--ease-out) .25s both;
+}
+.lagu-title em {
+  font-style: italic;
+  color: #fb7185;
+}
+
+.lagu-subtitle {
+  font-family: var(--ff-elegant);
+  font-size: clamp(.95rem, 2.5vw, 1.15rem);
+  font-style: italic;
+  color: rgba(255,255,255,.42);
+  animation: fadeUp .8s var(--ease-out) .4s both;
+}
+
+.lagu-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: .5rem;
+  animation: fadeUp .8s var(--ease-out) .55s both;
+}
+.lagu-divider span:not(.ld-icon) {
+  display: block;
+  width: 55px;
+  height: 1px;
+  background: rgba(255,255,255,.12);
+}
+.ld-icon { font-size: 1.1rem; }
+
+/* ── Song Cards ── */
+.songs-container {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 2.5rem;
+}
+
+.song-card {
+  position: relative;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 20px;
+  padding: 1.8rem 1.8rem 1.2rem;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: border-color .3s ease, background .3s ease, transform .4s var(--ease-spring);
+  animation: fadeUp .75s var(--ease-out) var(--sc-delay, .1s) forwards;
+}
+.song-card:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(225,29,72,.35);
+  transform: translateY(-4px);
+}
+
+/* Accent card (middle one) gets a subtle red left border */
+.song-card--accent {
+  border-left: 2px solid rgba(225,29,72,.55);
+  background: rgba(225,29,72,.05);
+}
+.song-card--accent:hover {
+  background: rgba(225,29,72,.09);
+  border-color: rgba(225,29,72,.6);
+}
+
+/* Number badge */
+.sc-number {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.6rem;
+  font-family: var(--ff-serif);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.04);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Card body layout */
+.sc-body {
+  display: flex;
+  gap: 1.4rem;
+  align-items: flex-start;
+}
+
+/* Art box */
+.sc-art {
+  flex-shrink: 0;
+  width: 68px;
+  height: 68px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(225,29,72,.25), rgba(159,18,57,.15));
+  border: 1px solid rgba(225,29,72,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transition: transform .3s var(--ease-spring);
+}
+.song-card:hover .sc-art { transform: scale(1.07) rotate(-3deg); }
+
+.sc-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+}
+
+/* Info */
+.sc-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+
+.sc-artist {
+  font-family: var(--ff-sans);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--c-red);
+  opacity: .9;
+  margin: 0;
+}
+
+.sc-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-weight: 400;
+  font-style: italic;
+  color: white;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.sc-memory {
+  font-family: var(--ff-elegant);
+  font-size: clamp(.9rem, 2vw, 1rem);
+  color: rgba(255,255,255,.5);
+  line-height: 1.7;
+  font-style: italic;
+  margin: .3rem 0 .6rem;
+}
+
+/* Listen button */
+.sc-listen {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--ff-sans);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--c-red);
+  text-decoration: none;
+  transition: color .2s ease, gap .2s ease;
+}
+.sc-listen:hover {
+  color: #fb7185;
+  gap: .75rem;
+}
+
+.sc-listen-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-red);
+  animation: dotPulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes dotPulse {
+  0%,100%{ transform: scale(1); opacity: .7; }
+  50%    { transform: scale(1.5); opacity: 1; }
+}
+
+/* Wave decoration bottom of card */
+.sc-wave {
+  margin-top: 1rem;
+  height: 28px;
+  color: var(--c-red);
+  opacity: .4;
+}
+.sc-wave svg { width: 100%; height: 100%; }
+
+/* ── Separator ── */
+.lagu-separator {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: 680px;
+  margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+.ls-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(225,29,72,.25), transparent);
+}
+.ls-text {
+  font-family: var(--ff-elegant);
+  font-size: .78rem;
+  font-style: italic;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+  white-space: nowrap;
+}
+
+/* ── Spotify Embed ── */
+.spotify-wrap {
+  position: relative;
+  z-index: 5;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.spotify-label {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: 1rem;
+  font-family: var(--ff-sans);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+}
+.spotify-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1DB954;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+.spotify-frame-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.07);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45);
+}
+
+.spotify-frame {
+  display: block;
+  border: none;
+  border-radius: 0;
+}
+
+/* ── Closing Quote ── */
+.lagu-quote-wrap {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: 0 1.5rem 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .8rem;
+}
+
+.lagu-quote {
+  font-family: var(--ff-elegant);
+  font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+  font-style: italic;
+  color: rgba(255,255,255,.55);
+  line-height: 1.85;
+  position: relative;
+}
+
+.lq-mark {
+  font-family: var(--ff-serif);
+  font-size: 2em;
+  line-height: .5;
+  vertical-align: -.25em;
+  color: var(--c-red);
+  opacity: .5;
+}
+
+.lagu-quote-from {
+  font-family: var(--ff-elegant);
+  font-size: .88rem;
+  font-style: italic;
+  color: rgba(255,255,255,.28);
+  letter-spacing: .08em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .sc-body { flex-direction: column; gap: 1rem; }
+  .sc-art  { width: 56px; height: 56px; font-size: 1.6rem; }
+  .sc-number { font-size: 2.5rem; }
 }

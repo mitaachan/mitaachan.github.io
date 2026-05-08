@@ -45,7 +45,8 @@
             <div class="nav-links">
                 <button onclick="pindahHalaman('home')"   class="nav-btn nav-btn--active" data-page="home">Beranda</button>
                 <button onclick="pindahHalaman('galeri')" class="nav-btn" data-page="galeri">Galeri</button>
-                <button onclick="pindahHalaman('pesan')"  class="nav-btn" data-page="pesan">Surat</button>
+                <button onclick="pindahHalaman('lagu')"   class="nav-btn" data-page="lagu">Lagu 🎵</button>
+                <button onclick="pindahHalaman('pesan')"  class="nav-btn" data-page="pesan">Surat 💌</button>
             </div>
         </div>
     </nav>
@@ -364,6 +365,156 @@
             </div>
         </section>
 
+        <!-- PAGE: LAGU — tambahkan di index.html setelah page-pesan -->
+        <section id="page-lagu" class="page page-lagu hidden">
+
+            <!-- Dekorasi background -->
+            <div class="lagu-bg-aurora"></div>
+            <div class="lagu-bg-word" aria-hidden="true">MUSIK</div>
+
+            <!-- ── HEADER ── -->
+            <div class="lagu-header">
+                <span class="lagu-eyebrow">untuk telingamu</span>
+                <h1 class="lagu-title">Lagu yang Selalu<br><em>Mengingatkanku</em> Padamu</h1>
+                <p class="lagu-subtitle">Setiap nada membawa wajahmu kembali.</p>
+                <div class="lagu-divider">
+                <span></span><span class="ld-icon">🎵</span><span></span>
+                </div>
+            </div>
+
+            <!-- ── 3 SONG CARDS ── -->
+            <div class="songs-container">
+
+                <!-- ════ GANTI: Song Card 1 ════ -->
+                <div class="song-card" style="--sc-delay:.1s">
+                <div class="sc-number">01</div>
+                <div class="sc-body">
+                    <div class="sc-art">
+                    <!-- Ganti emoji dengan <img src="cover.jpg"> jika punya cover art -->
+                    <span>🌊</span>
+                    </div>
+                    <div class="sc-info">
+                    <p class="sc-artist">Raisa</p>
+                    <h3 class="sc-title">Jatuh Hati</h3>
+                    <p class="sc-memory">
+                        "Lagu ini pertama kali aku dengarkan waktu memikirkanmu. 
+                        Setiap liriknya terasa seperti kata-kata yang ingin aku ucapkan."
+                    </p>
+                    <!-- Ganti href dengan link lagu Spotify -->
+                    <a class="sc-listen" href="https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC" target="_blank">
+                        <span class="sc-listen-dot"></span>
+                        Dengarkan di Spotify
+                    </a>
+                    </div>
+                </div>
+                <div class="sc-wave">
+                    <svg viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M0,20 C30,5 50,35 80,20 C110,5 130,35 160,20 C180,10 190,28 200,20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25"/>
+                    </svg>
+                </div>
+                </div>
+
+                <!-- ════ GANTI: Song Card 2 ════ -->
+                <div class="song-card song-card--accent" style="--sc-delay:.25s">
+                <div class="sc-number">02</div>
+                <div class="sc-body">
+                    <div class="sc-art">
+                    <span>🌙</span>
+                    </div>
+                    <div class="sc-info">
+                    <p class="sc-artist">Yura Yunita</p>
+                    <h3 class="sc-title">Cinta Dan Rahasia</h3>
+                    <p class="sc-memory">
+                        "Melodinya seperti perasaan yang tak bisa aku ungkapkan 
+                        dengan kata-kata. Ini adalah lagu kita."
+                    </p>
+                    <a class="sc-listen" href="https://open.spotify.com/track/1u8zy2sQ3AYqjTSl2Xh07p" target="_blank">
+                        <span class="sc-listen-dot"></span>
+                        Dengarkan di Spotify
+                    </a>
+                    </div>
+                </div>
+                <div class="sc-wave">
+                    <svg viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M0,20 C20,35 40,5 70,20 C100,35 120,5 150,20 C170,30 185,12 200,20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25"/>
+                    </svg>
+                </div>
+                </div>
+
+                <!-- ════ GANTI: Song Card 3 ════ -->
+                <div class="song-card" style="--sc-delay:.4s">
+                <div class="sc-number">03</div>
+                <div class="sc-body">
+                    <div class="sc-art">
+                    <span>🌸</span>
+                    </div>
+                    <div class="sc-info">
+                    <p class="sc-artist">Tulus</p>
+                    <h3 class="sc-title">Bumerang</h3>
+                    <p class="sc-memory">
+                        "Tiap kali lagu ini terputar, aku selalu tersenyum sendiri 
+                        sambil membayangkan wajahmu."
+                    </p>
+                    <a class="sc-listen" href="https://open.spotify.com/track/3DsNfRZhLjPKoEIkEMHa7D" target="_blank">
+                        <span class="sc-listen-dot"></span>
+                        Dengarkan di Spotify
+                    </a>
+                    </div>
+                </div>
+                <div class="sc-wave">
+                    <svg viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M0,20 C25,8 45,32 75,20 C105,8 125,32 155,20 C175,12 188,26 200,20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25"/>
+                    </svg>
+                </div>
+                </div>
+
+            </div><!-- /songs-container -->
+
+            <!-- ── SEPARATOR ── -->
+            <div class="lagu-separator">
+                <span class="ls-rule"></span>
+                <span class="ls-text">playlist kita</span>
+                <span class="ls-rule"></span>
+            </div>
+
+            <!-- ── SPOTIFY EMBED ── -->
+            <div class="spotify-wrap">
+                <div class="spotify-label">
+                <span class="spotify-dot"></span>
+                <span>Our Playlist</span>
+                </div>
+                <!--
+                GANTI: Ubah src iframe di bawah dengan link Spotify embed kamu.
+                Cara dapat link embed:
+                1. Buka playlist di Spotify
+                2. Klik ••• > Share > Embed playlist
+                3. Copy URL dari src="..."
+                -->
+                <div class="spotify-frame-wrap">
+                <iframe
+                    class="spotify-frame"
+                    src="https://open.spotify.com/embed/playlist/37i9dQZF1DX2sUQwD7tbmL?utm_source=generator&theme=0"
+                    width="100%"
+                    height="380"
+                    frameborder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy">
+                </iframe>
+                </div>
+            </div>
+
+            <!-- ── CLOSING QUOTE ── -->
+            <div class="lagu-quote-wrap">
+                <blockquote class="lagu-quote">
+                <span class="lq-mark">"</span>
+                Musik bisa membawa kita kembali ke momen yang paling berharga,
+                dan setiap lagu ini membawaku kembali padamu.
+                <span class="lq-mark">"</span>
+                </blockquote>
+                <p class="lagu-quote-from">— Untukmu, Mita 🐳</p>
+            </div>
+        </section>
     </main>
 
     <!-- ===== FOOTER ===== -->

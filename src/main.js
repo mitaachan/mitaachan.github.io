@@ -3,7 +3,7 @@ import './style.css'
 /* ─────────────────────────────────────────────
    OPENING — buka kado
 ───────────────────────────────────────────── */
-window.bukaKado = function () {
+function bukaKado() {
   const opening = document.getElementById('opening-screen')
   const main    = document.getElementById('main-content')
   const navbar  = document.getElementById('navbar')
@@ -16,6 +16,8 @@ window.bukaKado = function () {
     navbar.classList.remove('navbar--hidden')
     navbar.classList.add('navbar--visible')
 
+    sessionStorage.setItem('sudah-dibuka', 'ya')
+
     spawnBubbles()
     spawnFloatingHearts()
     initMosaicParallax()
@@ -23,19 +25,50 @@ window.bukaKado = function () {
     initCinema()
     initReasons()
     showFooter()
+
+    const halaman = getHalamanDariURL()
+    tampilkanHalaman(halaman, false)
   }, 920)
+}
+
+/* ─────────────────────────────────────────────
+   URL ROUTING HELPERS
+───────────────────────────────────────────── */
+const routeMap = {
+  '/':        'home',
+  '/beranda': 'home',
+  '/galeri':  'galeri',
+  '/surat':   'pesan',
+  '/lagu':    'lagu',
+}
+
+const pageToPath = {
+  'home':   '/beranda',
+  'galeri': '/galeri',
+  'pesan':  '/surat',
+  'lagu':   '/lagu',
+}
+
+function getHalamanDariURL() {
+  const path = window.location.pathname
+  return routeMap[path] ?? 'home'
 }
 
 /* ─────────────────────────────────────────────
    NAVIGATION
 ───────────────────────────────────────────── */
-window.pindahHalaman = function (target) {
+function pindahHalaman(target) {
+  const path = pageToPath[target] ?? '/beranda'
+  history.pushState({ halaman: target }, '', path)
+  tampilkanHalaman(target, true)
+}
+
+function tampilkanHalaman(target, scroll = true) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'))
 
   const page = document.getElementById('page-' + target)
   if (page) page.classList.remove('hidden')
 
-  // replay letter animations
   if (target === 'pesan') {
     const seal = document.getElementById('wax-seal')
     const card = document.querySelector('.letter-card')
@@ -43,16 +76,18 @@ window.pindahHalaman = function (target) {
     if (card) { card.style.animation = 'none'; card.offsetHeight; card.style.animation = '' }
   }
 
-  // nav active state
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.classList.toggle('nav-btn--active', btn.dataset.page === target)
   })
 
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+window.bukaKado      = bukaKado
+window.pindahHalaman = pindahHalaman
+
 /* ─────────────────────────────────────────────
-   STARS (opening)
+   STARS
 ───────────────────────────────────────────── */
 function spawnStars () {
   const c = document.getElementById('stars-container')
@@ -66,9 +101,6 @@ function spawnStars () {
   }
 }
 
-/* ─────────────────────────────────────────────
-   BUBBLES (after open)
-───────────────────────────────────────────── */
 function spawnBubbles () {
   for (let i = 0; i < 14; i++) {
     const el = document.createElement('div')
@@ -79,9 +111,6 @@ function spawnBubbles () {
   }
 }
 
-/* ─────────────────────────────────────────────
-   FLOATING HEARTS (hero)
-───────────────────────────────────────────── */
 function spawnFloatingHearts () {
   const c = document.getElementById('floating-hearts')
   if (!c) return
@@ -95,78 +124,49 @@ function spawnFloatingHearts () {
   }
 }
 
-/* ─────────────────────────────────────────────
-   MOSAIC PARALLAX — rows shift at different speeds
-   on scroll (subtle, like 2-luv)
-───────────────────────────────────────────── */
 function initMosaicParallax () {
   const row1 = document.querySelector('.mosaic-row--1')
   const row2 = document.querySelector('.mosaic-row--2')
   const section = document.querySelector('.mosaic-section')
   if (!row1 || !row2 || !section) return
-
   function onScroll () {
     const rect = section.getBoundingClientRect()
     const visible = rect.top < window.innerHeight && rect.bottom > 0
     if (!visible) return
-
-    // progress: 0 = section just entered viewport, 1 = just left
     const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-    const offset = (progress - 0.5) * 60 // ±30px
-
+    const offset = (progress - 0.5) * 60
     row1.style.transform = `translateY(${-offset * 0.6}px)`
     row2.style.transform = `translateY(${offset * 0.4}px)`
   }
-
   window.addEventListener('scroll', onScroll, { passive: true })
   onScroll()
 }
 
-/* ─────────────────────────────────────────────
-   SCROLL REVEAL — tagline features fade in
-   when they enter viewport
-───────────────────────────────────────────── */
 function initScrollReveal () {
-  // tl-heading reveal
   const heading = document.querySelector('.tl-heading')
   if (heading) {
     heading.style.opacity = '0'
     heading.style.transform = 'translateY(30px)'
     heading.style.transition = 'opacity .8s ease, transform .8s ease'
   }
-
-  const underline = document.querySelector('.tl-underline')
-  // tl-feats: reset delay so they re-animate
-  document.querySelectorAll('.tl-feat').forEach(el => {
-    el.style.opacity = '0'
-  })
-
+  document.querySelectorAll('.tl-feat').forEach(el => { el.style.opacity = '0' })
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return
       const el = entry.target
-
       if (el.classList.contains('tl-heading')) {
         el.style.opacity = '1'
         el.style.transform = 'translateY(0)'
       }
-      if (el.classList.contains('tl-feat')) {
-        // animation already defined in CSS via keyframes + opacity:0
-        el.style.animation = ''  // let CSS animation run
-      }
+      if (el.classList.contains('tl-feat')) el.style.animation = ''
       io.unobserve(el)
     })
   }, { threshold: .25 })
-
   if (heading) io.observe(heading)
   document.querySelectorAll('.tl-feat').forEach(el => io.observe(el))
 }
 
-/* ─────────────────────────────────────────────
-   CINEMA — parallax + split name letters
-───────────────────────────────────────────── */
 function initCinema () {
-  // ── split name into animated letters ──
   const nameEl = document.getElementById('cinema-name')
   if (nameEl) {
     const text = nameEl.textContent.trim()
@@ -181,30 +181,21 @@ function initCinema () {
       nameEl.appendChild(span)
     })
   }
-
-  // ── parallax on scroll ──
-  const bg = document.getElementById('cinema-bg')  // now a <picture>
+  const bg = document.getElementById('cinema-bg')
   const section = document.querySelector('.cinema-section')
   if (!bg || !section) return
-
   function onScroll () {
     const rect = section.getBoundingClientRect()
     const progress = 1 - (rect.bottom / (window.innerHeight + rect.height))
     const shift = (progress - .5) * 10
     bg.style.transform = `scale(1.08) translateY(${shift}%)`
   }
-
   window.addEventListener('scroll', onScroll, { passive: true })
 }
 
-/* ─────────────────────────────────────────────
-   REASONS — scroll reveal + touch flip
-───────────────────────────────────────────── */
 function initReasons () {
   const cards = document.querySelectorAll('.reason-card')
   if (!cards.length) return
-
-  // reveal cards as they enter viewport
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -213,25 +204,16 @@ function initReasons () {
       }
     })
   }, { threshold: .15 })
-
   cards.forEach(card => {
     io.observe(card)
-    // touch / click toggle for mobile
-    card.addEventListener('click', () => {
-      card.classList.toggle('flipped')
-    })
+    card.addEventListener('click', () => card.classList.toggle('flipped'))
   })
 }
 
-
-/* ─────────────────────────────────────────────
-   FOOTER
-───────────────────────────────────────────── */
 function showFooter () {
   const footer = document.getElementById('site-footer')
   if (!footer) return
   footer.classList.remove('hidden')
-
   const c = document.getElementById('footer-stars')
   if (c) {
     for (let i = 0; i < 55; i++) {
@@ -249,4 +231,55 @@ function rand (min, max) { return Math.random() * (max - min) + min }
 /* ─────────────────────────────────────────────
    INIT
 ───────────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', spawnStars)
+document.addEventListener('DOMContentLoaded', () => {
+  spawnStars()
+
+  const sudahDibuka = sessionStorage.getItem('sudah-dibuka')
+
+  if (sudahDibuka === 'ya') {
+    const opening = document.getElementById('opening-screen')
+    const main    = document.getElementById('main-content')
+    const navbar  = document.getElementById('navbar')
+
+    if (opening) opening.style.display = 'none'
+    if (main)    main.classList.remove('hidden')
+    if (navbar)  {
+      navbar.classList.remove('navbar--hidden')
+      navbar.classList.add('navbar--visible')
+    }
+
+    spawnBubbles()
+    spawnFloatingHearts()
+    initMosaicParallax()
+    initScrollReveal()
+    initCinema()
+    initReasons()
+    showFooter()
+
+    const halaman = getHalamanDariURL()
+    tampilkanHalaman(halaman, false)
+  }
+
+  window.addEventListener('popstate', (e) => {
+    const halaman = e.state?.halaman ?? getHalamanDariURL()
+    tampilkanHalaman(halaman, false)
+  })
+
+  const giftBox = document.getElementById('gift-box')
+  if (giftBox) giftBox.addEventListener('click', bukaKado)
+
+  document.querySelectorAll('.nav-btn[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => pindahHalaman(btn.dataset.page))
+  })
+
+  const navLogo = document.querySelector('.nav-logo')
+  if (navLogo) navLogo.addEventListener('click', () => pindahHalaman('home'))
+
+  const btnPesan  = document.querySelector('.hero-actions .btn-primary')
+  const btnGaleri = document.querySelector('.hero-actions .btn-ghost')
+  if (btnPesan)  btnPesan.addEventListener('click',  () => pindahHalaman('pesan'))
+  if (btnGaleri) btnGaleri.addEventListener('click', () => pindahHalaman('galeri'))
+
+  const topBtn = document.querySelector('.footer-top-btn')
+  if (topBtn) topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }))
+})
