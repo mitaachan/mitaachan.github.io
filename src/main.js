@@ -282,4 +282,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const topBtn = document.querySelector('.footer-top-btn')
   if (topBtn) topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }))
+  
+  // --- LOGIKA HAMBURGER MENU ---
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const navLinksContainer = document.getElementById('nav-links');
+
+  if (hamburgerBtn && navLinksContainer) {
+    // Buka/tutup menu saat tombol hamburger diklik
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('is-active');
+      navLinksContainer.classList.toggle('is-open');
+    });
+
+    // Tutup menu otomatis setelah salah satu tombol link ditekan
+    document.querySelectorAll('.nav-btn[data-page]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('is-active');
+        navLinksContainer.classList.remove('is-open');
+      });
+    });
+  }
 })

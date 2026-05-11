@@ -310,24 +310,36 @@ body {
   display: grid;
   gap: 6px;
   width: 100%;
+  /* Di PC: Buat menjadi 4 kolom dengan ukuran yang persis sama */
+  grid-template-columns: repeat(4, 1fr); 
 }
-.mosaic-row--1 { grid-template-columns: 1fr 2fr 2fr 2fr 1fr; }
-.mosaic-row--2 { grid-template-columns: 2fr 2fr 2fr 2fr; }
 
 .m-cell { overflow: hidden; }
+
 .m-photo {
-  width: 100%; height: 200px;
+  width: 100%; 
+  /* KUNCI: Memaksa rasio kotak selalu 3:2 (Lebar 3, Tinggi 2) */
+  aspect-ratio: 3 / 2; 
   background: linear-gradient(135deg, #3a0a0a, #1a0505);
   display: flex; align-items: center; justify-content: center;
   font-size: 3rem;
   overflow: hidden;
   transition: transform .6s ease;
-  /* subtle grayscale overlay like 2-luv */
   filter: grayscale(20%) brightness(.8);
 }
-.m-photo--sm { height: 160px; }
-.m-photo:hover { transform: scale(1.04); filter: grayscale(0%) brightness(1); }
-.m-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+
+.m-photo:hover { 
+  transform: scale(1.04); 
+  filter: grayscale(0%) brightness(1); 
+}
+
+.m-photo img { 
+  width: 100%; 
+  height: 100%; 
+  /* KUNCI 2: Pastikan foto menutupi kotak tanpa mengubah bentuk aslinya (tidak gepeng) */
+  object-fit: cover; 
+  display: block; 
+}
 
 /* ── overlay text — the big cinematic line ── */
 .mosaic-overlay-text {
@@ -1318,4 +1330,111 @@ body {
   .sc-body { flex-direction: column; gap: 1rem; }
   .sc-art  { width: 56px; height: 56px; font-size: 1.6rem; }
   .sc-number { font-size: 2.5rem; }
+}
+
+/* ─────────────────────────────────────────────
+   HAMBURGER MENU & MOBILE NAVBAR
+───────────────────────────────────────────── */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--c-red-deep);
+  border-radius: 4px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: left center;
+}
+
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex; /* Tampilkan ikon hamburger di mobile */
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 75px; /* DIUBAH: diturunkan sedikit (awalnya 62px) */
+    left: 1rem; /* DIUBAH: memberi celah di kiri */
+    right: 1rem; /* TAMBAHAN: memberi celah di kanan */
+    width: auto; /* DIUBAH: agar menyesuaikan celah kiri-kanan (awalnya 100%) */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+    gap: 1.2rem;
+    border: 1px solid rgba(225,29,72,.15); /* DIUBAH: border mengelilingi semua sisi */
+    border-radius: 20px; /* DIUBAH: semua sudut (termasuk atas) jadi membulat */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s var(--ease-spring), opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  /* Saat hamburger diklik, menu turun */
+  .nav-links.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Membuat tombol menu menjadi 75% dari lebar layarnya di mode mobile */
+  .nav-links .nav-btn {
+    width: 75%;
+    text-align: center;
+    padding: 0.8rem; /* Sedikit memperbesar area klik agar lebih mudah ditekan di HP */
+    font-size: 0.9rem;
+  }
+
+  /* Animasi ikon hamburger menjadi X */
+  .hamburger-btn.is-active span:nth-child(1) {
+    transform: rotate(45deg);
+  }
+  .hamburger-btn.is-active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-btn.is-active span:nth-child(3) {
+    transform: rotate(-45deg);
+  }
+}
+
+/* ─────────────────────────────────────────────
+MOSAIC GRID - RESPONSIVE MOBILE
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mosaic-section {
+    min-height: auto; /* Biarkan tinggi menyesuaikan konten */
+    padding-bottom: 5rem; /* Berikan ruang bawah agar foto tidak tertutup teks */
+  }
+  
+  .mosaic-row {
+    /* Di HP: Ubah menjadi 2 kolom saja agar ukurannya pas dan rapi */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  }
+  
+  .mosaic-overlay-text {
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
+    bottom: 0;
+  }
+}
+
+/* Memastikan halaman yang disembunyikan benar-benar hilang dari layar */
+.page.hidden {
+  display: none !important;
 }

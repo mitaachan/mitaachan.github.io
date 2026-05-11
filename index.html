@@ -42,7 +42,14 @@
                 <span>🐳</span>
                 <span class="nav-logo-text">Mita's Day</span>
             </button>
-            <div class="nav-links">
+            
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Buka Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div id="nav-links" class="nav-links">
                 <button onclick="pindahHalaman('home')"   class="nav-btn nav-btn--active" data-page="home">Beranda</button>
                 <button onclick="pindahHalaman('galeri')" class="nav-btn" data-page="galeri">Galeri</button>
                 <button onclick="pindahHalaman('lagu')"   class="nav-btn" data-page="lagu">Lagu 🎵</button>
@@ -99,35 +106,28 @@
 
             <!-- ── 2. MOSAIC GRID (seperti 2-luv) ── -->
             <div class="mosaic-section">
-                <!--
-                  Ganti setiap .m-photo dengan:
-                  <img src="foto-kamu.jpg" alt="...">
-                  dan hapus <span> emoji-nya.
-                -->
-
-                <!-- ROW 1 — 5 sel, ukuran bervariasi -->
                 <div class="mosaic-row mosaic-row--1">
-                    <div class="m-cell"><div class="m-photo m-photo--sm"><span>🌸</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🐳</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>❤️</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🎈</span></div></div>
-                    <div class="m-cell"><div class="m-photo m-photo--sm"><span>🌺</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🌸</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🐳</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>❤️</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🎈</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🌺</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>✨</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🌻</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>💫</span></div></div>
                 </div>
 
-                <!-- Overlay teks besar -->
                 <div class="mosaic-overlay-text" aria-hidden="true">
                     Hari yang tidak akan pernah <em>terlupakan.</em>
                 </div>
 
-                <!-- ROW 2 — 4 sel -->
                 <div class="mosaic-row mosaic-row--2">
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🎂</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>✨</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🤍</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🐋</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🎂</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🎁</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🤍</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🐋</span></div></div>
                 </div>
 
-                <!-- gradient fade top & bottom -->
                 <div class="mosaic-fade mosaic-fade--top"></div>
                 <div class="mosaic-fade mosaic-fade--bottom"></div>
             </div>
@@ -224,7 +224,6 @@
                 </div>
 
                 <div class="reasons-grid">
-
                     <div class="reason-card" style="--rc-delay:.1s">
                         <div class="rc-front">
                             <span class="rc-num">01</span>
@@ -234,7 +233,6 @@
                             <p>Senyummu yang bisa bikin hari-hariku langsung cerah, bahkan di hari yang paling berat sekalipun.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.2s">
                         <div class="rc-front">
                             <span class="rc-num">02</span>
@@ -244,7 +242,6 @@
                             <p>Caramu selalu ada untukku, tanpa harus aku minta. Kamu tahu kapan aku butuh kamu.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.3s">
                         <div class="rc-front">
                             <span class="rc-num">03</span>
@@ -254,7 +251,6 @@
                             <p>Setiap percakapan denganmu selalu berkesan. Tidak pernah ada kata membosankan bersamamu.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.4s">
                         <div class="rc-front">
                             <span class="rc-num">04</span>
@@ -264,7 +260,6 @@
                             <p>Malam-malam yang kita habiskan bersama adalah momen yang paling aku syukuri setiap harinya.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.5s">
                         <div class="rc-front">
                             <span class="rc-num">05</span>
@@ -274,7 +269,6 @@
                             <p>Kamu kuat dan tegar dengan caramu sendiri. Itu menginspirasi aku setiap hari.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.6s">
                         <div class="rc-front">
                             <span class="rc-num">06</span>
@@ -284,7 +278,24 @@
                             <p>Dan yang paling utama — kamu adalah kamu. Tidak perlu alasan lain lagi.</p>
                         </div>
                     </div>
-
+                    <div class="reason-card" style="--rc-delay:.7s">
+                        <div class="rc-front">
+                            <span class="rc-num">07</span>
+                            <span class="rc-emoji">🌻</span>
+                        </div>
+                        <div class="rc-back">
+                            <p>Tuliskan alasan ketujuhmu di sini. Ganti teks ini dengan kata-katamu sendiri.</p>
+                        </div>
+                    </div>
+                    <div class="reason-card" style="--rc-delay:.8s">
+                        <div class="rc-front">
+                            <span class="rc-num">08</span>
+                            <span class="rc-emoji">✨</span>
+                        </div>
+                        <div class="rc-back">
+                            <p>Tuliskan alasan kedelapanmu di sini. Ganti teks ini dengan kata-katamu sendiri.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <p class="reasons-footer">
