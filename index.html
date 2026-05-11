@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Mita 🐳❤️</title>
+    <title>Mitachan 🐳❤️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-DNaW-iGa.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DkH8wYrB.css">
+  <script type="module" crossorigin src="/assets/index-B3trs0hV.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BuaWmZD0.css">
 </head>
 <body>
 
@@ -43,11 +43,18 @@
                 <span>🐳</span>
                 <span class="nav-logo-text">Mita's Day</span>
             </button>
-            <div class="nav-links">
+            
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Buka Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div id="nav-links" class="nav-links">
                 <button onclick="pindahHalaman('home')"   class="nav-btn nav-btn--active" data-page="home">Beranda</button>
                 <button onclick="pindahHalaman('galeri')" class="nav-btn" data-page="galeri">Galeri</button>
-                <button onclick="pindahHalaman('lagu')"   class="nav-btn" data-page="lagu">Lagu 🎵</button>
-                <button onclick="pindahHalaman('pesan')"  class="nav-btn" data-page="pesan">Surat 💌</button>
+                <button onclick="pindahHalaman('lagu')"   class="nav-btn" data-page="lagu">Lagu</button>
+                <button onclick="pindahHalaman('pesan')"  class="nav-btn" data-page="pesan">Surat</button>
             </div>
         </div>
     </nav>
@@ -92,43 +99,32 @@
 
                 <div class="bg-swimmer">🐋</div>
                 <div id="floating-hearts" class="floating-hearts-container"></div>
-                <div class="scroll-nudge">
-                    <span class="scroll-line"></span>
-                    <span class="scroll-label">scroll</span>
-                </div>
             </div>
 
             <!-- ── 2. MOSAIC GRID (seperti 2-luv) ── -->
             <div class="mosaic-section">
-                <!--
-                  Ganti setiap .m-photo dengan:
-                  <img src="foto-kamu.jpg" alt="...">
-                  dan hapus <span> emoji-nya.
-                -->
-
-                <!-- ROW 1 — 5 sel, ukuran bervariasi -->
                 <div class="mosaic-row mosaic-row--1">
-                    <div class="m-cell"><div class="m-photo m-photo--sm"><span>🌸</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🐳</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>❤️</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🎈</span></div></div>
-                    <div class="m-cell"><div class="m-photo m-photo--sm"><span>🌺</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🌸</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🐳</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>❤️</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🎈</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🌺</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>✨</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🌻</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>💫</span></div></div>
                 </div>
 
-                <!-- Overlay teks besar -->
                 <div class="mosaic-overlay-text" aria-hidden="true">
                     Hari yang tidak akan pernah <em>terlupakan.</em>
                 </div>
 
-                <!-- ROW 2 — 4 sel -->
                 <div class="mosaic-row mosaic-row--2">
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🎂</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>✨</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🤍</span></div></div>
-                    <div class="m-cell m-cell--wide"><div class="m-photo"><span>🐋</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🎂</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🎁</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🤍</span></div></div>
+                    <div class="m-cell"><div class="m-photo"><span>🐋</span></div></div>
                 </div>
 
-                <!-- gradient fade top & bottom -->
                 <div class="mosaic-fade mosaic-fade--top"></div>
                 <div class="mosaic-fade mosaic-fade--bottom"></div>
             </div>
@@ -225,7 +221,6 @@
                 </div>
 
                 <div class="reasons-grid">
-
                     <div class="reason-card" style="--rc-delay:.1s">
                         <div class="rc-front">
                             <span class="rc-num">01</span>
@@ -235,7 +230,6 @@
                             <p>Senyummu yang bisa bikin hari-hariku langsung cerah, bahkan di hari yang paling berat sekalipun.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.2s">
                         <div class="rc-front">
                             <span class="rc-num">02</span>
@@ -245,7 +239,6 @@
                             <p>Caramu selalu ada untukku, tanpa harus aku minta. Kamu tahu kapan aku butuh kamu.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.3s">
                         <div class="rc-front">
                             <span class="rc-num">03</span>
@@ -255,7 +248,6 @@
                             <p>Setiap percakapan denganmu selalu berkesan. Tidak pernah ada kata membosankan bersamamu.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.4s">
                         <div class="rc-front">
                             <span class="rc-num">04</span>
@@ -265,7 +257,6 @@
                             <p>Malam-malam yang kita habiskan bersama adalah momen yang paling aku syukuri setiap harinya.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.5s">
                         <div class="rc-front">
                             <span class="rc-num">05</span>
@@ -275,7 +266,6 @@
                             <p>Kamu kuat dan tegar dengan caramu sendiri. Itu menginspirasi aku setiap hari.</p>
                         </div>
                     </div>
-
                     <div class="reason-card" style="--rc-delay:.6s">
                         <div class="rc-front">
                             <span class="rc-num">06</span>
@@ -285,7 +275,24 @@
                             <p>Dan yang paling utama — kamu adalah kamu. Tidak perlu alasan lain lagi.</p>
                         </div>
                     </div>
-
+                    <div class="reason-card" style="--rc-delay:.7s">
+                        <div class="rc-front">
+                            <span class="rc-num">07</span>
+                            <span class="rc-emoji">🌻</span>
+                        </div>
+                        <div class="rc-back">
+                            <p>Tuliskan alasan ketujuhmu di sini. Ganti teks ini dengan kata-katamu sendiri.</p>
+                        </div>
+                    </div>
+                    <div class="reason-card" style="--rc-delay:.8s">
+                        <div class="rc-front">
+                            <span class="rc-num">08</span>
+                            <span class="rc-emoji">✨</span>
+                        </div>
+                        <div class="rc-back">
+                            <p>Tuliskan alasan kedelapanmu di sini. Ganti teks ini dengan kata-katamu sendiri.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <p class="reasons-footer">
@@ -307,31 +314,40 @@
                 <p class="section-sub">Beberapa momen yang tidak terlupakan.</p>
             </div>
             <div class="gallery-grid">
-                <div class="polaroid polaroid--tilt-l">
-                    <div class="polaroid-photo"><span>🐋</span></div>
-                    <p class="polaroid-caption">Senyum Manis</p>
-                    <span class="polaroid-year">2024</span>
-                </div>
-                <div class="polaroid polaroid--straight polaroid--big">
-                    <div class="polaroid-photo"><span>🎈</span></div>
-                    <p class="polaroid-caption">Hari Bahagia</p>
-                    <span class="polaroid-year">2024</span>
-                </div>
-                <div class="polaroid polaroid--tilt-r">
-                    <div class="polaroid-photo"><span>🎂</span></div>
-                    <p class="polaroid-caption">Momen Kita</p>
-                    <span class="polaroid-year">2024</span>
-                </div>
-                <div class="polaroid polaroid--tilt-l-sm">
-                    <div class="polaroid-photo"><span>❤️</span></div>
-                    <p class="polaroid-caption">Selalu Bersama</p>
-                    <span class="polaroid-year">2024</span>
-                </div>
-                <div class="polaroid polaroid--tilt-r-sm">
-                    <div class="polaroid-photo"><span>🌸</span></div>
-                    <p class="polaroid-caption">Bunga Untukmu</p>
-                    <span class="polaroid-year">2024</span>
-                </div>
+                <div class="polaroid polaroid--tilt-l"><div class="polaroid-photo"><span>🌸</span></div><p class="polaroid-caption">Kenangan 1</p><span class="polaroid-year">2024</span></div>
+                <div class="polaroid polaroid--tilt-r"><div class="polaroid-photo"><span>🐳</span></div><p class="polaroid-caption">Kenangan 2</p><span class="polaroid-year">2024</span></div>
+                <div class="polaroid polaroid--straight"><div class="polaroid-photo"><span>❤️</span></div><p class="polaroid-caption">Kenangan 3</p><span class="polaroid-year">2024</span></div>
+                <div class="polaroid polaroid--tilt-l-sm"><div class="polaroid-photo"><span>🎈</span></div><p class="polaroid-caption">Kenangan 4</p><span class="polaroid-year">2024</span></div>
+
+                <div class="polaroid polaroid--tilt-r-sm"><div class="polaroid-photo"><span>🌺</span></div><p class="polaroid-caption">Kenangan 5</p><span class="polaroid-year">2025</span></div>
+                <div class="polaroid polaroid--tilt-l"><div class="polaroid-photo"><span>🌻</span></div><p class="polaroid-caption">Kenangan 6</p><span class="polaroid-year">2025</span></div>
+                <div class="polaroid polaroid--straight"><div class="polaroid-photo"><span>🤍</span></div><p class="polaroid-caption">Kenangan 7</p><span class="polaroid-year">2025</span></div>
+                <div class="polaroid polaroid--tilt-r"><div class="polaroid-photo"><span>🎁</span></div><p class="polaroid-caption">Kenangan 8</p><span class="polaroid-year">2025</span></div>
+
+                <div class="polaroid polaroid--tilt-l-sm"><div class="polaroid-photo"><span>✨</span></div><p class="polaroid-caption">Kenangan 9</p><span class="polaroid-year">2025</span></div>
+                <div class="polaroid polaroid--tilt-r-sm"><div class="polaroid-photo"><span>🎶</span></div><p class="polaroid-caption">Kenangan 10</p><span class="polaroid-year">2025</span></div>
+                <div class="polaroid polaroid--straight"><div class="polaroid-photo"><span>🍰</span></div><p class="polaroid-caption">Kenangan 11</p><span class="polaroid-year">2025</span></div>
+                <div class="polaroid polaroid--tilt-l"><div class="polaroid-photo"><span>🌟</span></div><p class="polaroid-caption">Kenangan 12</p><span class="polaroid-year">2025</span></div>
+
+                <div class="polaroid polaroid--tilt-r"><div class="polaroid-photo"><span>🍀</span></div><p class="polaroid-caption">Kenangan 13</p><span class="polaroid-year">2025</span></div>
+                <div class="polaroid polaroid--straight"><div class="polaroid-photo"><span>🌙</span></div><p class="polaroid-caption">Kenangan 14</p><span class="polaroid-year">2025</span></div>
+                <div class="polaroid polaroid--tilt-l-sm"><div class="polaroid-photo"><span>🍭</span></div><p class="polaroid-caption">Kenangan 15</p><span class="polaroid-year">2025</span></div>
+                <div class="polaroid polaroid--tilt-r-sm"><div class="polaroid-photo"><span>🎨</span></div><p class="polaroid-caption">Kenangan 16</p><span class="polaroid-year">2025</span></div>
+
+                <div class="polaroid polaroid--tilt-l"><div class="polaroid-photo"><span>🍓</span></div><p class="polaroid-caption">Kenangan 17</p><span class="polaroid-year">2026</span></div>
+                <div class="polaroid polaroid--tilt-r"><div class="polaroid-photo"><span>🚀</span></div><p class="polaroid-caption">Kenangan 18</p><span class="polaroid-year">2026</span></div>
+                <div class="polaroid polaroid--straight"><div class="polaroid-photo"><span>🧸</span></div><p class="polaroid-caption">Kenangan 19</p><span class="polaroid-year">2026</span></div>
+                <div class="polaroid polaroid--tilt-l-sm"><div class="polaroid-photo"><span>🌈</span></div><p class="polaroid-caption">Kenangan 20</p><span class="polaroid-year">2026</span></div>
+
+                <div class="polaroid polaroid--tilt-r-sm"><div class="polaroid-photo"><span>🐱</span></div><p class="polaroid-caption">Kenangan 21</p><span class="polaroid-year">2026</span></div>
+                <div class="polaroid polaroid--tilt-l"><div class="polaroid-photo"><span>🍦</span></div><p class="polaroid-caption">Kenangan 22</p><span class="polaroid-year">2026</span></div>
+                <div class="polaroid polaroid--straight"><div class="polaroid-photo"><span>🍩</span></div><p class="polaroid-caption">Kenangan 23</p><span class="polaroid-year">2026</span></div>
+                <div class="polaroid polaroid--tilt-r"><div class="polaroid-photo"><span>💌</span></div><p class="polaroid-caption">Kenangan 24</p><span class="polaroid-year">2026</span></div>
+
+                <div class="polaroid polaroid--tilt-l-sm"><div class="polaroid-photo"><span>💎</span></div><p class="polaroid-caption">Kenangan 25</p><span class="polaroid-year">2026</span></div>
+                <div class="polaroid polaroid--tilt-r-sm"><div class="polaroid-photo"><span>🦋</span></div><p class="polaroid-caption">Kenangan 26</p><span class="polaroid-year">2026</span></div>
+                <div class="polaroid polaroid--straight"><div class="polaroid-photo"><span>📸</span></div><p class="polaroid-caption">Kenangan 27</p><span class="polaroid-year">2026</span></div>
+                <div class="polaroid polaroid--tilt-l"><div class="polaroid-photo"><span>🌅</span></div><p class="polaroid-caption">Kenangan 28</p><span class="polaroid-year">2026</span></div>
             </div>
             <p class="gallery-note">
                 💡 Ganti <code>&lt;span&gt;</code> emoji dengan <code>&lt;img src="..."&gt;</code> untuk foto asli
@@ -343,26 +359,104 @@
         ══════════════════════════════ -->
         <section id="page-pesan" class="page page-pesan hidden">
             <div class="letter-bg-word" aria-hidden="true">LOVE</div>
-            <div class="letter-scene">
-                <div class="wax-seal" id="wax-seal">❤️</div>
-                <article class="letter-card">
-                    <header class="letter-head">
-                        <span class="letter-ornament">— ❦ —</span>
-                        <h2 class="letter-title">Sebuah Surat</h2>
-                        <time class="letter-date">Mei 2025</time>
-                    </header>
-                    <div class="letter-body">
-                        <p class="letter-greeting">Mita sayang,</p>
-                        <p>Selamat ulang tahun! Terima kasih sudah selalu ada dan menjadi bagian terpenting dalam hari-hariku. Aku membuat website kecil dengan tema paus dan warna merah ini khusus untukmu.</p>
-                        <p>Mungkin kelihatannya sederhana, tapi semoga ini bisa bikin kamu senyum hari ini. Semoga di usiamu yang baru ini, kamu selalu diberikan kebahagiaan yang seluas samudra dan impian-impianmu satu per satu bisa terwujud.</p>
-                        <p>Tetap jadi Mita yang aku kenal ya. Setiap hari bersamamu adalah hadiah yang paling berharga.</p>
+                <div class="section-header" style="position: relative; z-index: 5;">
+                    <span class="section-label">pesan dari hati</span>
+                    <h2 class="section-title">Surat <em>Untukmu</em></h2>
+                    <p class="section-sub">Ketuk amplop untuk membuka suratnya.</p>
+                </div>
+
+                <div class="letters-grid">
+                    <div class="letter-item">
+                        <div class="li-envelope">💌</div>
+                        <h3 class="li-title">Surat Pertama</h3>
+                        <p class="li-date">Mei 2024</p>
+                        <div class="li-content hidden">
+                            <p class="letter-greeting">Mita sayang,</p>
+                            <p>Ini adalah surat pertama dari delapan surat yang aku buat untukmu. Terima kasih sudah selalu menjadi alasan di balik setiap senyumku. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, rem molestiae. Omnis porro voluptatem cum minus corporis magni atque voluptatibus eaque, aspernatur dicta libero odit voluptatum aliquid accusamus totam sequi dolore ipsum deserunt quibusdam impedit dolor. Magni animi veniam nihil? Necessitatibus odit debitis minus, a est facere, perferendis voluptatum quidem facilis quas dolore modi, incidunt ipsum dolor impedit ullam ex! Deserunt ad, natus fugit deleniti quidem omnis cum dolor modi minus error asperiores voluptate, optio iure accusantium perferendis id quisquam voluptates ipsam illum reprehenderit. Libero pariatur fugiat explicabo labore voluptas minus nulla laudantium quaerat, animi non aspernatur doloremque repellat dignissimos?</p>
+                        </div>
                     </div>
-                    <footer class="letter-foot">
-                        <div class="letter-whale-deco">🐳</div>
-                        <p class="letter-sign">Dengan sepenuh hati,</p>
-                        <p class="letter-from">Dari Aku ❤️</p>
-                    </footer>
-                </article>
+
+                    <div class="letter-item">
+                        <div class="li-envelope">🕊️</div>
+                        <h3 class="li-title">Hari Baik</h3>
+                        <p class="li-date">Juni 2024</p>
+                        <div class="li-content hidden">
+                            <p class="letter-greeting">Hai kamu,</p>
+                            <p>Semoga hari-harimu selalu diiringi dengan hal-hal baik. Jangan pernah lupa bahwa kamu sangat berharga bagiku.</p>
+                        </div>
+                    </div>
+
+                    <div class="letter-item">
+                        <div class="li-envelope">✨</div>
+                        <h3 class="li-title">Untuk Malammu</h3>
+                        <p class="li-date">Juli 2024</p>
+                        <div class="li-content hidden">
+                            <p class="letter-greeting">Mita,</p>
+                            <p>Di setiap malam, sebelum memejamkan mata, aku selalu berdoa untuk kebahagiaanmu. Selamat beristirahat, jagoan!</p>
+                        </div>
+                    </div>
+
+                    <div class="letter-item">
+                        <div class="li-envelope">🌸</div>
+                        <h3 class="li-title">Tentang Rindu</h3>
+                        <p class="li-date">Agustus 2024</p>
+                        <div class="li-content hidden">
+                            <p class="letter-greeting">Sayang,</p>
+                            <p>Terkadang jarak membuat rindu semakin besar, tapi aku yakin hati kita selalu terhubung satu sama lain.</p>
+                        </div>
+                    </div>
+
+                    <div class="letter-item">
+                        <div class="li-envelope">🌻</div>
+                        <h3 class="li-title">Semangat!</h3>
+                        <p class="li-date">September 2024</p>
+                        <div class="li-content hidden">
+                            <p class="letter-greeting">Hai orang hebat,</p>
+                            <p>Aku tahu kadang semuanya terasa berat. Tapi ingat, kamu kuat dan aku selalu ada di sini mendukungmu.</p>
+                        </div>
+                    </div>
+
+                    <div class="letter-item">
+                        <div class="li-envelope">🎈</div>
+                        <h3 class="li-title">Sebuah Kenangan</h3>
+                        <p class="li-date">Oktober 2024</p>
+                        <div class="li-content hidden">
+                            <p class="letter-greeting">Mita,</p>
+                            <p>Setiap momen yang kita lalui menjadi kenangan manis di kepalaku. Mari membuat lebih banyak kenangan lagi.</p>
+                        </div>
+                    </div>
+
+                    <div class="letter-item">
+                        <div class="li-envelope">🎁</div>
+                        <h3 class="li-title">Bulan Spesial</h3>
+                        <p class="li-date">November 2024</p>
+                        <div class="li-content hidden">
+                            <p class="letter-greeting">Mita sayang,</p>
+                            <p>Aku hanya ingin mengatakan bahwa keberadaanmu adalah salah satu hadiah terbaik dalam hidupku.</p>
+                        </div>
+                    </div>
+
+                    <div class="letter-item">
+                        <div class="li-envelope">🎂</div>
+                        <h3 class="li-title">Selamat Ulang Tahun</h3>
+                        <p class="li-date">Hari Ini</p>
+                        <div class="li-content hidden">
+                            <p class="letter-greeting">Mita sayang,</p>
+                            <p>Selamat ulang tahun! Semoga usiamu yang baru ini dipenuhi berkah, kesehatan, dan kebahagiaan yang melimpah.</p>
+                            <p>Aku menyayangimu lebih dari yang bisa diungkapkan kata-kata.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="letter-item">
+                        <div class="li-envelope">💌</div>
+                        <h3 class="li-title">Untuk Selamanya</h3>
+                        <p class="li-date">Masa Depan</p>
+                        <div class="li-content hidden">
+                            <p class="letter-greeting">Mita sayang,</p>
+                            <p>Ini adalah surat terakhir dari kumpulan ini, tapi ceritaku denganmu tidak akan pernah ada akhirnya. Terima kasih untuk segalanya. I love you!</p>
+                        </div>
+                    </div>
+                </div>    
             </div>
         </section>
 
@@ -544,5 +638,46 @@
         <div class="footer-circle-2"></div>
     </footer>
 
+    <div id="photo-modal" class="photo-modal hidden">
+        <button id="modal-close" class="modal-close" aria-label="Tutup">&times;</button>
+        <div class="modal-content">
+            <div id="modal-photo" class="modal-photo">
+                </div>
+            <p id="modal-caption" class="modal-caption"></p>
+        </div>
+    </div>
+
+    <div id="letter-modal" class="letter-modal hidden">
+        <button id="letter-modal-close" class="modal-close" aria-label="Tutup">×</button>
+        <div class="modal-content">
+            <div class="letter-scene in-modal">
+                <div class="wax-seal" id="modal-wax-seal">❤️</div>
+                <article class="letter-card">
+                    <header class="letter-head">
+                        <span class="letter-ornament">— ❦ —</span>
+                        <h2 class="letter-title" id="lm-title">Sebuah Surat</h2>
+                        <time class="letter-date" id="lm-date">Mei 2024</time>
+                    </header>
+                    
+                    <div class="letter-body" id="lm-content">
+                        </div>
+                    
+                    <footer class="letter-foot">
+                        <div class="letter-whale-deco">🐳</div>
+                        <p class="letter-sign">Dengan sepenuh hati,</p>
+                        <p class="letter-from">Dari Aku ❤️</p>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bg-music">
+        <source src="/assets/ShapeOfMyHeart-D_bbBUxX.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-toggle" class="music-toggle-btn" aria-label="Nyalakan/Matikan Musik">
+        🎵
+    </button>
 </body>
 </html>
