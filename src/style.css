@@ -318,15 +318,19 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0;
 }
 
 /* ── rows ── */
 .mosaic-row {
   display: grid;
-  gap: 6px;
   width: 100%;
   /* Di PC: Buat menjadi 4 kolom dengan ukuran yang persis sama */
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(3, 1fr);
+  height: auto !important;
+  gap: 0 !important; 
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .m-cell { overflow: hidden; }
@@ -576,6 +580,7 @@ body {
 .cinema-content {
   position: relative;
   z-index: 10;
+  padding-top: 300px !important;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -2002,4 +2007,103 @@ MOSAIC GRID - RESPONSIVE MOBILE
 .music-toggle-btn.is-playing {
   background: #ff4d6d; /* Tombol jadi pink menyala saat nyala */
   animation: spin-disk 4s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .cinema-content {
+    /* Kecilkan atau nol-kan padding agar teks otomatis berada di atas */
+    padding-bottom: 650px !important; 
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE: ZERO GAP MOSAIC (FOTO RAPET)
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mosaic-section {
+    padding: 0 !important;
+    /* Menghilangkan semua kemungkinan jarak antar elemen di dalam section */
+    display: flex;
+    flex-direction: column;
+    gap: 0 !important; 
+  }
+
+  .mosaic-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    /* Menghilangkan gap horizontal dan vertikal antar foto */
+    gap: 0 !important; 
+    width: 100% !important;
+    /* Sesuaikan tinggi baris agar tidak ada ruang kosong di atas/bawah foto */
+    height: 120px !important; 
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .m-cell {
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    /* Pastikan tidak ada border atau outline yang tersisa */
+    border: none !important;
+  }
+
+  .m-photo, .m-photo img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE: RESPONSIVE 3:2 ASPECT RATIO GRID
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mosaic-section {
+    padding: 0 !important;
+    width: 100% !important;
+    overflow: hidden;
+  }
+
+  .mosaic-row {
+    display: grid !important;
+    /* TETAP 3 KOLOM SEJAJAR */
+    grid-template-columns: repeat(3, 1fr) !important; 
+    width: 100% !important;
+    
+    /* PENTING: Hilangkan tinggi pasti (height: 120px dihapus) */
+    height: auto !important; 
+    
+    /* Nol-kan gap agar foto menempel rapat vertikal & horizontal */
+    gap: 0 !important; 
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .m-cell {
+    width: 100% !important;
+    
+    /* 💥 KUNCI UTAMA: MEMAKSA RASIO 3:2 💥 */
+    /* Browser akan menghitung tinggi otomatis: (Lebar / 3) * 2 */
+    aspect-ratio: 3 / 2 !important; 
+    
+    /* Pastikan tinggi pasti dari desktop tidak mengganggu */
+    height: auto !important; 
+    
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+  }
+
+  .m-photo, .m-photo img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    
+    /* Menjaga foto di dalam kotak rasio 3:2 agar tidak gepeng */
+    object-fit: cover !important; 
+    object-position: center;
+  }
 }

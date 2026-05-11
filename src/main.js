@@ -3,7 +3,7 @@ import './style.css'
 /* ─────────────────────────────────────────────
    KONFIGURASI PLAYLIST INFINITY LOOP
 ───────────────────────────────────────────── */
-const playlist = ['../public/ShapeOfMyHeart.mp3', '../public/bixby-distance.mp3'];
+const playlist = ['/ShapeOfMyHeart.mp3', '/bixby-distance.mp3'];
 let currentSongIndex = 0;
 
 /* ─────────────────────────────────────────────
