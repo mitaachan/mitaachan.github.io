@@ -158,8 +158,23 @@ body {
 .navbar--hidden  { transform: translateY(-100%); }
 .navbar--visible { transform: translateY(0); }
 .navbar-inner {
-  max-width:940px; margin:0 auto; padding:0 1.5rem; height:62px;
-  display:flex; align-items:center; justify-content:space-between;
+  /* Mengatur lebar container menjadi 90% */
+  width: 85% !important;
+  max-width: none !important; /* Menghapus batas 940px sebelumnya */
+  
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* Penyesuaian untuk tampilan mobile agar tetap proporsional */
+@media (max-width: 768px) {
+  .navbar-inner {
+    width: 90% !important; /* Sedikit lebih lebar di HP agar logo tidak terlalu ke tengah */
+    padding: 0 1rem;
+  }
 }
 .nav-logo { background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:.5rem; }
 .nav-logo-text { font-family:var(--ff-serif); font-size:1.1rem; font-weight:700; color:var(--c-red-deep); }
@@ -378,8 +393,22 @@ body {
   position: absolute; left: 0; right: 0; z-index: 5; pointer-events: none;
   height: 90px;
 }
-.mosaic-fade--top    { top: 0;    background: linear-gradient(to bottom, var(--c-cream) 0%, transparent 100%); }
-.mosaic-fade--bottom { bottom: 0; background: linear-gradient(to top, var(--c-night-mid,#240707) 0%, transparent 100%); }
+/* Memperbaiki bug hitam/abu-abu di Safari (iOS) */
+.mosaic-fade--top { 
+  top: 0;    
+  background: linear-gradient(to bottom, #fffdf7 0%, rgba(255, 253, 247, 0) 100%); 
+}
+.mosaic-fade--bottom { 
+  bottom: 0; 
+  background: linear-gradient(to top, #240707 0%, rgba(36, 7, 7, 0) 100%); 
+}
+
+/* (Opsional) Memperkecil area pudar di HP agar foto lebih terlihat jelas */
+@media (max-width: 768px) {
+  .mosaic-fade {
+    height: 40px;
+  }
+}
 
 /* ─────────────────────────────────────────────
    DARK TAGLINE SECTION  ← NEW (seperti 2-luv "about")
@@ -667,8 +696,19 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.2rem;
-  max-width: 860px;
+  
+  /* Diubah menjadi 85% untuk tampilan PC */
+  width: 85% !important;
+  max-width: none !important; /* Menghapus batas maksimal bawaannya (860px) */
+  
   margin: 0 auto;
+}
+
+/* Penyesuaian agar di HP menjadi 90% */
+@media (max-width: 768px) {
+  .reasons-grid {
+    width: 90% !important;
+  }
 }
 
 .reason-card {
@@ -1478,31 +1518,48 @@ MOSAIC GRID - RESPONSIVE MOBILE
 /* ─────────────────────────────────────────────
    GALERI GRID - 4 KOLOM PC & 2 KOLOM MOBILE
 ───────────────────────────────────────────── */
+
 /* Tampilan Desktop (PC) */
 .gallery-grid {
   display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important; /* Paksa menjadi 4 kolom */
-  max-width: 1000px !important; /* Lebarkan kontainer agar muat 4 foto */
-  gap: 1.5rem !important; /* Sesuaikan jarak antar foto */
+  grid-template-columns: repeat(4, 1fr) !important; /* 4 foto sejajar di PC */
+  
+  /* Diperlebar menjadi 85% */
+  width: 80% !important;
+  max-width: none !important; /* Menghapus batasan 1000px sebelumnya */
+  
+  gap: 1.5rem !important;
   margin: 0 auto;
   justify-items: center;
+  padding: 2.5rem 0 !important;
 }
 
+/* Ukuran kartu polaroid */
 .polaroid, .polaroid--big {
-  width: 100% !important; /* Polaroid akan mengikuti lebar kolom grid */
-  max-width: 220px !important; /* Batas maksimal besarnya polaroid */
+  width: 100% !important;
+  max-width: 260px !important; /* Batas dilonggarkan agar foto bisa ikut membesar */
   margin: 0 auto;
 }
 
 /* Tampilan Mobile (HP) */
 @media (max-width: 768px) {
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr) !important; /* Ubah otomatis jadi 2 kolom di HP */
-    gap: 1rem !important;
-    padding: 1.5rem 1rem !important;
+    width: 85% !important; /* Diperlebar jadi 90% di HP */
+    grid-template-columns: repeat(2, 1fr) !important; /* TETAP 2 kartu dalam 1 baris */
+    gap: 0.8rem !important; /* Jarak sedikit dirapatkan agar muat */
+    padding: 1.5rem 0 !important;
+  }
+
+  /* Penyesuaian bingkai putih polaroid agar pas di layar HP yang terbagi 2 */
+  .polaroid, .polaroid--big {
+    padding: 0.6rem 0.6rem 2rem !important;
+  }
+  
+  .polaroid-caption {
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
   }
 }
-
 /* ─────────────────────────────────────────────
    PHOTO MODAL (LIGHTBOX POP-UP)
 ───────────────────────────────────────────── */
@@ -1682,7 +1739,7 @@ MOSAIC GRID - RESPONSIVE MOBILE
    PERLEBAR KARTU LAGU (75% WIDTH)
 ───────────────────────────────────────────── */
 .songs-container {
-  width: 80% !important;
+  width: 85% !important;
   max-width: none !important; /* Menghapus batas maksimal sebelumnya (680px) */
   margin: 0 auto;
 }
@@ -1698,7 +1755,7 @@ MOSAIC GRID - RESPONSIVE MOBILE
    PERLEBAR SPOTIFY PLAYLIST (75% WIDTH)
 ───────────────────────────────────────────── */
 .spotify-wrap {
-  width: 80% !important;
+  width: 85% !important;
   max-width: none !important; /* Menghapus batas maksimal sebelumnya (680px) */
   margin: 0 auto;
 }
@@ -1708,4 +1765,241 @@ MOSAIC GRID - RESPONSIVE MOBILE
   .spotify-wrap {
     width: 92% !important; 
   }
+}
+
+/* ─────────────────────────────────────────────
+   HALAMAN SURAT (BACKGOUND & TEKS)
+───────────────────────────────────────────── */
+.page-pesan {
+  background-color: #240707 !important; /* Warna gelap yang kamu inginkan */
+  min-height: 100vh;
+  display: block !important;
+  padding-top: 80px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Menyesuaikan warna teks header agar kontras dengan background gelap */
+.page-pesan .section-title {
+  color: #ffffff; /* Putih */
+}
+
+.page-pesan .section-sub {
+  color: rgba(255, 255, 255, 0.7); /* Putih transparan */
+}
+
+.page-pesan .section-label {
+  color: #ff4d6d; /* Warna pink/merah terang agar menyala */
+}
+
+/* Menyesuaikan tulisan besar "LOVE" di latar belakang */
+.letter-bg-word {
+  color: rgba(255, 255, 255, 0.03); /* Sangat tipis agar elegan */
+}
+
+/* Keadaan Normal */
+.letter-item {
+  background: #ffffff !important; /* Kartu warna putih bersih */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 2.2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Bayangan agar kartu 'angkat' dari bg gelap */
+  transition: all 0.4s var(--ease-spring);
+}
+
+.letter-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ff4d6d;
+}
+
+.letter-item .li-title {
+  color: #240707 !important; /* Menggunakan warna background page agar serasi */
+  font-family: var(--ff-serif);
+  font-size: 1.25rem;
+  margin-bottom: 0.3rem;
+  transition: color 0.3s ease;
+}
+
+/* Teks Tanggal (Normal: Abu-abu gelap) */
+.letter-item .li-date {
+  color: #555555 !important;
+  font-family: var(--ff-elegant);
+  font-size: 0.85rem;
+  opacity: 0.8;
+  transition: color 0.3s ease;
+}
+
+.letters-grid {
+  display: grid !important;
+  /* KUNCI: Memaksa grid menjadi persis 3 kolom yang sama besar */
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1.5rem;
+  
+  width: 85% !important;
+  max-width: none !important; 
+  margin: 0 auto;
+  padding: 1rem 1.5rem 6rem;
+  position: relative;
+  z-index: 5;
+}
+
+/* Penyesuaian agar di HP tidak terlalu sempit (menggunakan 92% layar) */
+@media (max-width: 768px) {
+  .letters-grid {
+    width: 90% !important;
+    /* Di HP layarnya terlalu sempit untuk 3 kolom, jadi kita ubah jadi 1 kolom berjejer ke bawah agar tetap cantik & terbaca */
+    grid-template-columns: repeat(1, 1fr) !important; 
+  }
+}
+
+.letter-item {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(225, 29, 72, 0.15);
+  border-radius: 12px;
+  padding: 2.2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+  transition: all 0.4s var(--ease-spring);
+}
+
+.letter-item:hover {
+  transform: translateY(-8px);
+  background: #ffffff !important; /* Tetap putih */
+  border-color: #ff4d6d; /* Garis tepi berubah jadi pink menyala */
+  box-shadow: 0 15px 30px rgba(255, 77, 109, 0.3); /* Glow pink lembut */
+}
+
+.li-envelope {
+  font-size: 3.5rem;
+  margin-bottom: 1.2rem;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.letter-item:hover .li-envelope {
+  transform: scale(1.15) rotate(-6deg);
+}
+
+.letter-item:hover .li-title {
+  color: #ff4d6d !important; /* Berubah jadi pink saat di-hover */
+}
+
+.letter-item:hover .li-date {
+  color: #ff4d6d !important;
+  opacity: 1;
+}
+
+.li-title {
+  font-family: var(--ff-serif);
+  font-size: 1.25rem;
+  color: var(--c-ink);
+  margin-bottom: 0.3rem;
+}
+
+.li-date {
+  font-family: var(--ff-elegant);
+  font-size: 0.85rem;
+  color: var(--c-red-dark);
+  opacity: 0.7;
+}
+
+/* --- Style Modal Pop-up Surat --- */
+.letter-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(26, 5, 5, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Membantu menengahkan modal secara vertikal, namun tetap bisa di-scroll jika panjang */
+.letter-modal::before, .letter-modal::after {
+  content: '';
+  margin: auto;
+}
+
+.letter-modal.is-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  display: flex !important;
+}
+
+.letter-modal .modal-content {
+  width: 100%;
+  max-width: 580px;
+  transform: scale(0.95) translateY(20px);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.letter-modal.is-open .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Mengurangi margin pada elemen animasi agar pas di dalam Pop-up */
+.letter-scene.in-modal {
+  padding: 0;
+  max-width: 100%;
+  margin: 1.5rem 0;
+}
+
+/* ─────────────────────────────────────────────
+   TOMBOL MUSIK MELAYANG (KIRI BAWAH)
+───────────────────────────────────────────── */
+.music-toggle-btn {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #ff4d6d;
+  color: #ff4d6d;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s var(--ease-spring);
+  
+  /* Sembunyikan awalnya, akan muncul setelah kado dibuka */
+  opacity: 0; 
+  pointer-events: none;
+  transform: translateY(20px) scale(0.8);
+}
+
+.music-toggle-btn.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.music-toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Animasi berputar saat lagu sedang menyala */
+@keyframes spin-disk {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.music-toggle-btn.is-playing {
+  background: #ff4d6d; /* Tombol jadi pink menyala saat nyala */
+  animation: spin-disk 4s linear infinite;
 }
