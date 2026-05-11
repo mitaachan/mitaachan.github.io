@@ -776,7 +776,17 @@ body {
 .polaroid--straight  { transform:rotate(0deg); }
 .polaroid--big       { width:218px; }
 .polaroid:hover      { transform:rotate(0deg) scale(1.06) translateY(-10px) !important; box-shadow:0 18px 40px rgba(0,0,0,.13); z-index:20; }
-.polaroid-photo { width:100%; aspect-ratio:1; background:linear-gradient(135deg,var(--c-red-light),var(--c-red-pale)); border-radius:1px; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:3.2rem; }
+.polaroid-photo { 
+  width: 100%; 
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--c-red-light), var(--c-red-pale)); 
+  border-radius: 1px; 
+  overflow: hidden; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 3.2rem; 
+}
 .polaroid-photo img { width:100%; height:100%; object-fit:cover; display:block; }
 .polaroid-caption { font-family:var(--ff-serif); font-size:.83rem; font-style:italic; color:var(--c-ink); text-align:center; margin-top:.55rem; }
 .polaroid-year { display:block; font-size:.6rem; color:rgba(0,0,0,.28); text-align:center; margin-top:.2rem; letter-spacing:.12em; }
@@ -1437,4 +1447,265 @@ MOSAIC GRID - RESPONSIVE MOBILE
 /* Memastikan halaman yang disembunyikan benar-benar hilang dari layar */
 .page.hidden {
   display: none !important;
+}
+
+/* ─────────────────────────────────────────────
+   GALERI GRID - RESPONSIVE MOBILE
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .gallery-grid {
+    gap: 1.2rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  /* Di HP, paksa polaroid menjadi 2 kolom rapi */
+  .polaroid {
+    width: calc(50% - 0.6rem); /* Membagi 2 layar dikurangi jarak gap */
+    padding: 0.7rem 0.7rem 2.2rem; /* Sesuaikan bingkai putih agar pas di layar kecil */
+  }
+  
+  /* Hilangkan efek ukuran berbeda di mobile agar barisnya selaras */
+  .polaroid--big {
+    width: calc(50% - 0.6rem);
+  }
+  
+  .polaroid-caption {
+    font-size: 0.75rem;
+    margin-top: 0.4rem;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   GALERI GRID - 4 KOLOM PC & 2 KOLOM MOBILE
+───────────────────────────────────────────── */
+/* Tampilan Desktop (PC) */
+.gallery-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important; /* Paksa menjadi 4 kolom */
+  max-width: 1000px !important; /* Lebarkan kontainer agar muat 4 foto */
+  gap: 1.5rem !important; /* Sesuaikan jarak antar foto */
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.polaroid, .polaroid--big {
+  width: 100% !important; /* Polaroid akan mengikuti lebar kolom grid */
+  max-width: 220px !important; /* Batas maksimal besarnya polaroid */
+  margin: 0 auto;
+}
+
+/* Tampilan Mobile (HP) */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important; /* Ubah otomatis jadi 2 kolom di HP */
+    gap: 1rem !important;
+    padding: 1.5rem 1rem !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   PHOTO MODAL (LIGHTBOX POP-UP)
+───────────────────────────────────────────── */
+.photo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999; /* Pastikan berada paling depan */
+  background: rgba(26, 5, 5, 0.85); /* Warna latar gelap transparan */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.photo-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Tombol Silang (Close) */
+.modal-close {
+  position: absolute;
+  top: 2rem !important;
+  right: 2rem !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-spring) !important;
+  z-index: 10000;
+  
+  /* Sembunyikan karakter "&times;" bawaan yang tidak rapi */
+  font-size: 0 !important; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Menggambar garis X secara manual dengan CSS agar 100% simetris */
+.modal-close::before,
+.modal-close::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2.5px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+.modal-close::before {
+  transform: rotate(45deg);
+}
+
+.modal-close::after {
+  transform: rotate(-45deg);
+}
+
+.modal-close:hover {
+  background: var(--c-red) !important;
+  border-color: var(--c-red) !important;
+  transform: rotate(90deg) scale(1.1) !important;
+}
+
+/* Konten Modal */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  transform: scale(0.8) translateY(30px);
+  transition: transform 0.4s var(--ease-spring);
+  width: 100%;
+}
+
+.photo-modal.is-open .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Bingkai Foto di dalam Pop-up */
+.modal-photo {
+  width: 95vw; /* Berusaha selebar mungkin (95% dari lebar layar) */
+  
+  /* KUNCI 4:3: Batasi lebarnya agar tingginya tidak melebihi 82% layar (82vh) */
+  /* Rumus: 82vh dikali rasio (4/3) = 109.33vh */
+  max-width: calc(82vh * 1.3333); 
+  aspect-ratio: 4 / 3; /* DIUBAH: Menjadi rasio lanskap / memanjang ke samping */
+  
+  background: linear-gradient(135deg, var(--c-red-light), var(--c-red-pale));
+  border-radius: 12px;
+  border: 14px solid white;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16rem; /* Emoji disesuaikan agar proporsional */
+  overflow: hidden;
+}
+
+.modal-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Teks Caption di bawah foto */
+.modal-caption {
+  font-family: var(--ff-serif);
+  font-size: 1.8rem;
+  font-style: italic;
+  color: white;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
+  .modal-photo {
+    width: 95vw; 
+    max-width: none;
+    border-width: 10px;
+    font-size: 9rem;
+  }
+  .modal-close {
+    top: 1.2rem !important;
+    right: 1.2rem !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .modal-close::before,
+  .modal-close::after {
+    width: 16px;
+    height: 2px;
+  }
+  .modal-caption {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   TEMA WARNA GALERI: MERAH GELAP
+───────────────────────────────────────────── */
+.page-galeri { 
+  background: #240707 !important; 
+}
+
+/* Mengubah warna teks judul agar menyala di background gelap */
+.page-galeri .section-title { 
+  color: white !important; 
+}
+
+/* Mengubah warna kata "Kenangan" (cetak miring) menjadi merah muda terang */
+.page-galeri .section-title em { 
+  color: #fb7185 !important; 
+}
+
+/* Mengubah warna teks sub-judul ("Beberapa momen yang...") */
+.page-galeri .section-sub { 
+  color: rgba(255, 255, 255, 0.7) !important; 
+}
+
+/* Mengubah warna teks catatan di paling bawah galeri */
+.gallery-note {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ─────────────────────────────────────────────
+   PERLEBAR KARTU LAGU (75% WIDTH)
+───────────────────────────────────────────── */
+.songs-container {
+  width: 80% !important;
+  max-width: none !important; /* Menghapus batas maksimal sebelumnya (680px) */
+  margin: 0 auto;
+}
+
+/* Penyesuaian agar tidak terpotong di layar HP */
+@media (max-width: 768px) {
+  .songs-container {
+    width: 92% !important; 
+  }
+}
+
+/* ─────────────────────────────────────────────
+   PERLEBAR SPOTIFY PLAYLIST (75% WIDTH)
+───────────────────────────────────────────── */
+.spotify-wrap {
+  width: 80% !important;
+  max-width: none !important; /* Menghapus batas maksimal sebelumnya (680px) */
+  margin: 0 auto;
+}
+
+/* Penyesuaian agar tetap cantik dan tidak kepotong di HP */
+@media (max-width: 768px) {
+  .spotify-wrap {
+    width: 92% !important; 
+  }
 }

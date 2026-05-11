@@ -302,4 +302,45 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // --- LOGIKA POP-UP GALERI ---
+  const photoModal = document.getElementById('photo-modal');
+  const modalCloseBtn = document.getElementById('modal-close');
+  const modalPhotoContainer = document.getElementById('modal-photo');
+  const modalCaption = document.getElementById('modal-caption');
+
+  if (photoModal) {
+    // 1. Fungsi Buka Modal
+    document.querySelectorAll('.polaroid').forEach(card => {
+      card.addEventListener('click', () => {
+        // Ambil isi HTML (bisa gambar atau emoji) dan caption dari kartu yang diklik
+        const photoContent = card.querySelector('.polaroid-photo').innerHTML;
+        const captionText = card.querySelector('.polaroid-caption').textContent;
+
+        // Pasang ke dalam modal
+        modalPhotoContainer.innerHTML = photoContent;
+        modalCaption.textContent = captionText;
+
+        // Munculkan modal
+        photoModal.classList.remove('hidden');
+        // Delay sedikit agar browser merender penghapusan 'hidden' sebelum memulai animasi 'is-open'
+        setTimeout(() => photoModal.classList.add('is-open'), 10);
+      });
+    });
+
+    // 2. Fungsi Tutup Modal
+    const closeModal = () => {
+      photoModal.classList.remove('is-open');
+      // Tunggu animasi transisi CSS (0.4s) selesai sebelum benar-benar dihilangkan (hidden)
+      setTimeout(() => photoModal.classList.add('hidden'), 400);
+    };
+
+    // Tutup jika tombol silang diklik
+    modalCloseBtn.addEventListener('click', closeModal);
+
+    // Tutup juga jika area kosong di luar foto (backdrop) diklik
+    photoModal.addEventListener('click', (e) => {
+      if (e.target === photoModal) closeModal();
+    });
+  }
 })
