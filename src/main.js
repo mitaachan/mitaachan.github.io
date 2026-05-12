@@ -88,13 +88,15 @@ function getHalamanDariURL() {
    NAVIGATION
 ───────────────────────────────────────────── */
 function pindahHalaman(target) {
+  // Arahkan ke project animasi jika targetnya animasi
   if (target === 'animasi') {
-    window.location.href = 'https://mitaachan.github.io/animasi/'; // Pastikan URL ini benar
+    window.location.href = '/animasi/'; 
     return;
   }
   
-  const hash = pageToPath[target] ?? '#/beranda'
-  window.location.hash = hash // Secara otomatis menangani history
+  // Routing normal untuk halaman lain
+  const path = pageToPath[target] ?? '/beranda'
+  history.pushState({ halaman: target }, '', path)
   tampilkanHalaman(target, true)
 }
 
