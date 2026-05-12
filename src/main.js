@@ -63,33 +63,46 @@ function bukaKado() {
    URL ROUTING HELPERS
 ───────────────────────────────────────────── */
 const routeMap = {
-  '/':        'home',
-  '/beranda': 'home',
-  '/galeri':  'galeri',
-  '/surat':   'pesan',
-  '/lagu':    'lagu',
+  '':           'home',
+  '#/beranda':  'home',
+  '#/galeri':   'galeri',
+  '#/surat':    'pesan',
+  '#/lagu':     'lagu',
+  '#/animasi':  'animasi',
 }
 
 const pageToPath = {
-  'home':   '/beranda',
-  'galeri': '/galeri',
-  'pesan':  '/surat',
-  'lagu':   '/lagu',
+  'home':   '#/beranda',
+  'galeri': '#/galeri',
+  'pesan':  '#/surat',
+  'lagu':   '#/lagu',
+  'animasi': '#/animasi',
 }
 
 function getHalamanDariURL() {
-  const path = window.location.pathname
-  return routeMap[path] ?? 'home'
+  const hash = window.location.hash
+  return routeMap[hash] ?? 'home'
 }
 
 /* ─────────────────────────────────────────────
    NAVIGATION
 ───────────────────────────────────────────── */
 function pindahHalaman(target) {
-  const path = pageToPath[target] ?? '/beranda'
-  history.pushState({ halaman: target }, '', path)
+  if (target === 'animasi') {
+    window.location.href = 'https://mitaachan.github.io/animasi/'; // Pastikan URL ini benar
+    return;
+  }
+  
+  const hash = pageToPath[target] ?? '#/beranda'
+  window.location.hash = hash // Secara otomatis menangani history
   tampilkanHalaman(target, true)
 }
+
+// Tambahkan listener untuk mendeteksi perubahan hash secara manual
+window.addEventListener('hashchange', () => {
+  const halaman = getHalamanDariURL()
+  tampilkanHalaman(halaman, false)
+})
 
 function tampilkanHalaman(target, scroll = true) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'))
