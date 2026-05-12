@@ -42,7 +42,6 @@ function bukaKado() {
             if (musicToggle) musicToggle.classList.add('is-playing');
         }).catch(err => console.log('Browser butuh interaksi: ', err));
     }
-    // --------------------------------------------------------
 
     sessionStorage.setItem('sudah-dibuka', 'ya')
 
@@ -60,23 +59,21 @@ function bukaKado() {
 }
 
 /* ─────────────────────────────────────────────
-   URL ROUTING HELPERS
+   URL ROUTING HELPERS (MENGGUNAKAN HASH #)
 ───────────────────────────────────────────── */
 const routeMap = {
   '':           'home',
   '#/beranda':  'home',
   '#/galeri':   'galeri',
   '#/surat':    'pesan',
-  '#/lagu':     'lagu',
-  '#/animasi':  'animasi',
+  '#/lagu':     'lagu'
 }
 
 const pageToPath = {
   'home':   '#/beranda',
   'galeri': '#/galeri',
   'pesan':  '#/surat',
-  'lagu':   '#/lagu',
-  'animasi': '#/animasi',
+  'lagu':   '#/lagu'
 }
 
 function getHalamanDariURL() {
@@ -88,23 +85,16 @@ function getHalamanDariURL() {
    NAVIGATION
 ───────────────────────────────────────────── */
 function pindahHalaman(target) {
-  // Arahkan ke project animasi jika targetnya animasi
+  // Direct Langsung ke Project Animasi
   if (target === 'animasi') {
-    window.location.href = '/animasi/'; 
+    window.location.href = 'https://mitaachan.github.io/animasi/';
     return;
   }
-  
-  // Routing normal untuk halaman lain
-  const path = pageToPath[target] ?? '/beranda'
-  history.pushState({ halaman: target }, '', path)
+
+  const hash = pageToPath[target] ?? '#/beranda'
+  window.location.hash = hash
   tampilkanHalaman(target, true)
 }
-
-// Tambahkan listener untuk mendeteksi perubahan hash secara manual
-window.addEventListener('hashchange', () => {
-  const halaman = getHalamanDariURL()
-  tampilkanHalaman(halaman, false)
-})
 
 function tampilkanHalaman(target, scroll = true) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'))
@@ -284,7 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navbar.classList.add('navbar--visible')
     }
     
-    // --- MUNCULKAN & PUTAR MUSIK OTOMATIS SAAT REFRESH ---
     const bgMusic = document.getElementById('bg-music');
     const musicToggle = document.getElementById('music-toggle');
     
@@ -301,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (musicToggle) musicToggle.classList.add('is-playing');
         }).catch(() => console.log("Menunggu klik user untuk menyalakan musik"));
     }
-    // -----------------------------------------------------
 
     spawnBubbles()
     spawnFloatingHearts()
@@ -315,8 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
     tampilkanHalaman(halaman, false)
   }
 
-  window.addEventListener('popstate', (e) => {
-    const halaman = e.state?.halaman ?? getHalamanDariURL()
+  // Deteksi Perubahan Hash (Tombol Back Browser)
+  window.addEventListener('hashchange', () => {
+    const halaman = getHalamanDariURL()
     tampilkanHalaman(halaman, false)
   })
 
@@ -333,7 +322,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnPesan  = document.querySelector('.hero-actions .btn-primary')
   const btnGaleri = document.querySelector('.hero-actions .btn-ghost')
   if (btnPesan)  btnPesan.addEventListener('click',  () => pindahHalaman('pesan'))
-  if (btnGaleri) btnGaleri.addEventListener('click', () => pindahHalaman('galeri'))
+  
+  // FIX: Tombol "Lihat Ucapan" sekarang langsung ke animasi
+  if (btnGaleri) btnGaleri.addEventListener('click', () => pindahHalaman('animasi'))
 
   const topBtn = document.querySelector('.footer-top-btn')
   if (topBtn) topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }))
@@ -446,7 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const bgMusic = document.getElementById('bg-music');
   if (bgMusic) {
       bgMusic.addEventListener('ended', () => {
-          // Lanjut ke lagu berikutnya, jika habis kembali ke 0
           currentSongIndex = (currentSongIndex + 1) % playlist.length;
           bgMusic.src = playlist[currentSongIndex];
           
@@ -457,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  // --- MATIKAN BACKGROUND MUSIC JIKA ADA AUDIO LAIN YANG DI-PLAY (MISAL VIDEO LAIN) ---
+  // --- MATIKAN BACKGROUND MUSIC JIKA ADA AUDIO LAIN YANG DI-PLAY ---
   document.addEventListener('play', (e) => {
       if (e.target.id !== 'bg-music') {
           if (bgMusic && !bgMusic.paused) {
@@ -468,11 +458,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   }, true);
 
-  // --- SPOTIFY IFRAME API (DETEKSI PLAY/PAUSE SPOTIFY DENGAN CERDAS) ---
+  // --- SPOTIFY IFRAME API ---
   const spotifyIframe = document.querySelector('.spotify-frame');
   if (spotifyIframe) {
       const script = document.createElement('script');
-      script.src = "https://open.spotify.com/embed/iframe-api/v1"; // Link API Spotify resmi
+      script.src = "https://open.spotify.com/embed-fallback/iframe-api/v1"; 
       script.async = true;
       document.body.appendChild(script);
 
@@ -501,14 +491,12 @@ document.addEventListener('DOMContentLoaded', () => {
                   const musicToggle = document.getElementById('music-toggle');
                   
                   if (!e.data.isPaused) {
-                      // KONDISI 1: JIKA SPOTIFY DIPUTAR -> Matikan musik latar web
                       if (bgMusic && !bgMusic.paused) {
                           bgMusic.pause();
                           if (musicToggle) musicToggle.classList.remove('is-playing');
                           sessionStorage.setItem('spotify_playing', 'true');
                       }
                   } else {
-                      // KONDISI 2: JIKA SPOTIFY DIJEDA / HABIS -> Nyalakan lagi musik latar web
                       if (sessionStorage.getItem('spotify_playing') === 'true') {
                           if (bgMusic && bgMusic.paused) {
                               bgMusic.play().then(() => {
